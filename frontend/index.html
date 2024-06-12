@@ -2,10 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .episodes {
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .episode {
+        min-width: max-content;
+        margin-bottom: .8rem;
+        padding: .8rem 1rem;
+        border-radius: 10px;
+        border: 0;
+        background: #191414;
+        color: #fff;
+        cursor: pointer;
+      }
+  
+      .episode:hover {
+        background: #1Db954;
+      }
+  
+      @media screen and (min-width: 860px) {
+        body {
+          display: flex;
+          flex-direction: row;
+          gap: 1rem;
+        }
+      }
+    </style>
+    <title>Spotify Test</title>
 </head>
 <body>
-    
+    <div class="episodes">
+        <button class="episode" data-spotify-id="https://open.spotify.com/playlist/4NoFpymuHwVgPmfJrmnM9y?si=bf81ad233f24418c">
+          Habang Naliligo
+        </button>
+        <button class="episode" data-spotify-id="https://open.spotify.com/album/1NAmidJlEaVgA3MpcPFYGq?si=Ax5Q0eTVRc2ao9Wurd33_Q">
+          Lover Girl
+        </button>
+        <button class="episode" data-spotify-id="https://open.spotify.com/track/3xCsHloPBl211Yi4UEUUcm?si=bdfe22a125774912">
+          Pool
+        </button>
+    </div>
+    <div id="embed-iframe"></div>
+    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+    <script type="text/javascript">
+        window.onSpotifyIframeApiReady = (IFrameAPI) => {
+          const element = document.getElementById('embed-iframe');
+          const options = {
+            width: '100%',
+            height: '160',
+            uri: 'spotify:episode:7makk4oTQel546B0PZlDM5'
+          };
+          const callback = (EmbedController) => {
+            document.querySelectorAll('.episode').forEach(
+              episode => {
+                episode.addEventListener('click', () => {
+                  EmbedController.loadUri(episode.dataset.spotifyId)
+                  EmbedController.play()
+                });
+              })
+          };
+          IFrameAPI.createController(element, options, callback);
+        };
+      </script>
 </body>
 </html>
