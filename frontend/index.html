@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>For Jelo</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/CSSRulePlugin.min.js"></script>
 
@@ -153,6 +153,14 @@ display: None !important;
           }
         })
       };
+    document.querySelector("#envelope").addEventListener('touchstart', () => {
+          var player = document.getElementById("player")
+          player.classList.remove('hidden')
+          if (!isPlayed){
+            EmbedController.play()
+            isPlayed = true
+          }
+        })
       IFrameAPI.createController(element, options, callback);
     };
   </script>
