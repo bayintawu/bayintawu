@@ -144,6 +144,16 @@ display: None !important;
 
         //     });
         //   })
+        document.querySelector("#envelope").addEventListener('touchstart', () => {
+          var player = document.getElementById("player")
+          player.classList.remove('hidden')
+          if (!isPlayed){
+            EmbedController.play()
+            isPlayed = true
+          }
+        })
+      IFrameAPI.createController(element, options, callback);
+    };
         document.querySelector("#envelope").addEventListener('click', () => {
           var player = document.getElementById("player")
           player.classList.remove('hidden')
@@ -154,16 +164,7 @@ display: None !important;
         })
       IFrameAPI.createController(element, options, callback);
       };
-    document.querySelector("#envelope").addEventListener('touchstart', () => {
-          var player = document.getElementById("player")
-          player.classList.remove('hidden')
-          if (!isPlayed){
-            EmbedController.play()
-            isPlayed = true
-          }
-        })
-      IFrameAPI.createController(element, options, callback);
-    };
+
   </script>
 </div>
 
