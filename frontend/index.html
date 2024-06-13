@@ -16,6 +16,10 @@
 	 --shadow: #4f4c6b;
 	 --letter: #d8d7e5;
 }
+body{
+  overflow: hidden;
+}
+
  * {
 	 border: 0;
 	 margin: 0;
@@ -118,7 +122,12 @@
  .hidden{
   opacity: 0 !important;
  }
-
+ @media only screen and (max-width: 600px) {
+  /* CSS rules for small screens */
+  body{
+    scale: 0.75;
+  }
+}
   </style>
 </head>
 <body>
@@ -212,16 +221,8 @@ function closeCard() {
         height: '100',
         uri: 'https://open.spotify.com/playlist/1f8AQhDqH5NU5UIq9Dj0RQ?si=f1babd974b9745f7',
       };
-      const callback = (EmbedController) => {
-        // document.querySelectorAll('.episode').forEach(
-        //   episode => {
-        //     episode.addEventListener('click', () => {
-        //       EmbedController.loadUri(episode.dataset.spotifyId)
-        //       EmbedController.play()
+      let callback = (EmbedController) => {
 
-
-        //     });
-        //   })
         document.querySelector("#envelope").addEventListener('click', () => {
           var player = document.getElementById("player")
           player.classList.remove('hidden')
@@ -229,17 +230,16 @@ function closeCard() {
             EmbedController.play()
             isPlayed = true
           }
-        })
-      IFrameAPI.createController(element, options, callback);
-      };
-    document.querySelector("#envelope").addEventListener('touchstart', () => {
+        });
+        document.querySelector("#envelope").addEventListener('touchstart', () => {
           var player = document.getElementById("player")
           player.classList.remove('hidden')
           if (!isPlayed){
             EmbedController.play()
             isPlayed = true
           }
-        })
+        });
+      };
       IFrameAPI.createController(element, options, callback);
     };
   </script>
