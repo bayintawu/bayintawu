@@ -22,7 +22,7 @@
 	 box-sizing: border-box;
 }
  .container {
-	 min-height: 100vh;
+	 min-height: 85vh;
 	 display: flex;
 	 align-items: center;
 	 justify-content: center;
@@ -122,50 +122,7 @@ display: None !important;
   </style>
 </head>
 <body>
-  <div id="player" class="hidden">
-  <div id="embed-iframe"></div>
-  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-  <script type="text/javascript">
-    let isPlayed = false
-    window.onSpotifyIframeApiReady = (IFrameAPI) => {
-      const element = document.getElementById('embed-iframe');
-      const options = {
-        width: '85%',
-        height: '200',
-        uri: 'https://open.spotify.com/playlist/1f8AQhDqH5NU5UIq9Dj0RQ?si=f1babd974b9745f7',
-      };
-      const callback = (EmbedController) => {
-        // document.querySelectorAll('.episode').forEach(
-        //   episode => {
-        //     episode.addEventListener('click', () => {
-        //       EmbedController.loadUri(episode.dataset.spotifyId)
-        //       EmbedController.play()
 
-
-        //     });
-        //   })
-        document.querySelector("#envelope").addEventListener('click', () => {
-          var player = document.getElementById("player")
-          // player.classList.remove('hidden')
-          // if (!isPlayed){
-            EmbedController.play()
-            // isPlayed = true
-          // }
-        })
-      IFrameAPI.createController(element, options, callback);
-      };
-    document.querySelector("#envelope").addEventListener('touchstart', () => {
-          var player = document.getElementById("player")
-          // player.classList.remove('hidden')
-          // if (!isPlayed){
-            EmbedController.play()
-            // isPlayed = true
-          // }
-        })
-      IFrameAPI.createController(element, options, callback);
-    };
-  </script>
-</div>
 
   <div class="container">
     <div class="content">
@@ -242,5 +199,50 @@ function closeCard() {
   t2.reverse();
 }
   </script>
+
+<div id="player" class="">
+  <div id="embed-iframe"></div>
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  <script type="text/javascript">
+    let isPlayed = false
+    window.onSpotifyIframeApiReady = (IFrameAPI) => {
+      const element = document.getElementById('embed-iframe');
+      const options = {
+        width: '75%',
+        height: '100',
+        uri: 'https://open.spotify.com/playlist/1f8AQhDqH5NU5UIq9Dj0RQ?si=f1babd974b9745f7',
+      };
+      const callback = (EmbedController) => {
+        // document.querySelectorAll('.episode').forEach(
+        //   episode => {
+        //     episode.addEventListener('click', () => {
+        //       EmbedController.loadUri(episode.dataset.spotifyId)
+        //       EmbedController.play()
+
+
+        //     });
+        //   })
+        document.querySelector("#envelope").addEventListener('click', () => {
+          var player = document.getElementById("player")
+          // player.classList.remove('hidden')
+          // if (!isPlayed){
+            EmbedController.play()
+            // isPlayed = true
+          // }
+        })
+      IFrameAPI.createController(element, options, callback);
+      };
+    document.querySelector("#envelope").addEventListener('touchstart', () => {
+          var player = document.getElementById("player")
+          // player.classList.remove('hidden')
+          // if (!isPlayed){
+            EmbedController.play()
+            // isPlayed = true
+          // }
+        })
+      IFrameAPI.createController(element, options, callback);
+    };
+  </script>
+</div>
 </body>
 </html>
