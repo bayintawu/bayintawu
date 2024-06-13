@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Jelo</title>
+  <title>Document</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/CSSRulePlugin.min.js"></script>
 
@@ -16,17 +16,13 @@
 	 --shadow: #4f4c6b;
 	 --letter: #d8d7e5;
 }
-body{
-  overflow: hidden;
-}
-
  * {
 	 border: 0;
 	 margin: 0;
 	 box-sizing: border-box;
 }
  .container {
-	 min-height: 85vh;
+	 min-height: 100vh;
 	 display: flex;
 	 align-items: center;
 	 justify-content: center;
@@ -77,7 +73,7 @@ body{
 	 right: 0;
 	 top: 0;
 	 font-size: 30px;
-   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	 font-family: 'Manjari', sans-serif;
 	 cursor: pointer;
 	 -webkit-user-select: none;
 	 -moz-user-select: none;
@@ -88,7 +84,7 @@ body{
 	 font-size: 10px;
 	 font-weight: 200;
 	 text-align: center;
-   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	 font-family: 'Great Vibes', cursive;
 }
  .envelope {
 	 position: relative;
@@ -120,18 +116,56 @@ body{
 	 background: linear-gradient(30deg, var(--base-dark) 47%, var(--shadow) 50%, var(--base) 50%) 150px 90px/ 150px 90px no-repeat, linear-gradient(31deg, var(--base) 49%, var(--shadow) 50%, transparent 50%) 0px 0px/ 152px 90px no-repeat, linear-gradient(150deg, var(--base) 50%, var(--shadow) 50%, var(--base-dark) 53%) 0px 90px/ 151px 90px no-repeat, linear-gradient(148.7deg, transparent 50%, var(--shadow) 50%, var(--base) 51%) 150px 0px/ 150px 90px no-repeat;
 }
  .hidden{
-  opacity: 0 !important;
+display: None !important;
  }
+
  @media only screen and (max-width: 600px) {
   /* CSS rules for small screens */
-  body{
-    scale: 0.75;
-  }
+    body {
+      width: 100%;
+      margin: 0;
+      padding: 0;
 }
+}
+
   </style>
 </head>
 <body>
+  <div id="player" class="hidden">
+  <div id="embed-iframe"></div>
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  <script type="text/javascript">
+    let isPlayed = false
+    window.onSpotifyIframeApiReady = (IFrameAPI) => {
+      const element = document.getElementById('embed-iframe');
+      const options = {
+        width: '80%',
+        height: '400',
+        uri: 'https://open.spotify.com/playlist/1f8AQhDqH5NU5UIq9Dj0RQ?si=f1babd974b9745f7',
+      };
+      const callback = (EmbedController) => {
+        // document.querySelectorAll('.episode').forEach(
+        //   episode => {
+        //     episode.addEventListener('click', () => {
+        //       EmbedController.loadUri(episode.dataset.spotifyId)
+        //       EmbedController.play()
 
+
+        //     });
+        //   })
+        document.querySelector("#envelope").addEventListener('click', () => {
+          var player = document.getElementById("player")
+          player.classList.remove('hidden')
+          if (!isPlayed){
+            EmbedController.play()
+            isPlayed = true
+          }
+        })
+      };
+      IFrameAPI.createController(element, options, callback);
+    };
+  </script>
+</div>
 
   <div class="container">
     <div class="content">
@@ -140,7 +174,7 @@ body{
         <span class="close" onclick="event.stopPropagation(); closeCard()">
         <div class="body">
             <div class="message">
-              My Beloved <b>Jelo</b>,
+My Beloved Jelo,
 <br/>
 <br/>
 <br/>
@@ -149,8 +183,8 @@ In your eyes, I find home. Your laughter, my favorite song. With you, every mome
 <br/>
 <br/>
 <br/>
-Yours always,<br/>
-<b>Dan</b>
+Yours always,
+Dan
             </div>
           </div>
         </span>
@@ -208,41 +242,5 @@ function closeCard() {
   t2.reverse();
 }
   </script>
-
-<div id="player" class="hidden">
-  <div id="embed-iframe"></div>
-  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-  <script type="text/javascript">
-    let isPlayed = false
-    window.onSpotifyIframeApiReady = (IFrameAPI) => {
-      const element = document.getElementById('embed-iframe');
-      const options = {
-        width: '75%',
-        height: '100',
-        uri: 'https://open.spotify.com/playlist/1f8AQhDqH5NU5UIq9Dj0RQ',
-      };
-      let callback = (EmbedController) => {
-
-        document.querySelector("#envelope").addEventListener('click', () => {
-          var player = document.getElementById("player")
-          player.classList.remove('hidden')
-          if (!isPlayed){
-            EmbedController.play()
-            isPlayed = true
-          }
-        });
-        document.querySelector("#envelope").addEventListener('touchstart', () => {
-          var player = document.getElementById("player")
-          player.classList.remove('hidden')
-          if (!isPlayed){
-            EmbedController.play()
-            isPlayed = true
-          }
-        });
-      };
-      IFrameAPI.createController(element, options, callback);
-    };
-  </script>
-</div>
 </body>
 </html>
