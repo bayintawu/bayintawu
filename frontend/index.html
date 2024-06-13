@@ -130,8 +130,8 @@ display: None !important;
     window.onSpotifyIframeApiReady = (IFrameAPI) => {
       const element = document.getElementById('embed-iframe');
       const options = {
-        width: '80%',
-        height: '160',
+        width: '85%',
+        height: '200',
         uri: 'https://open.spotify.com/playlist/1f8AQhDqH5NU5UIq9Dj0RQ?si=f1babd974b9745f7',
       };
       const callback = (EmbedController) => {
@@ -152,6 +152,7 @@ display: None !important;
             isPlayed = true
           }
         })
+      IFrameAPI.createController(element, options, callback);
       };
     document.querySelector("#envelope").addEventListener('touchstart', () => {
           var player = document.getElementById("player")
